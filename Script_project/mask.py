@@ -106,12 +106,12 @@ fInput = tk.Frame(window)
 fInput.pack()
 lb1 = tk.Label(fInput, text = "주소: ")
 #lb1.grid(row = 0, column = 0, sticky="e")
-lb1.place(x=215, y=283)
+lb1.place(x=205, y=283)
 iptAddr = tk.Entry(fInput,width=20) #주소 입력받는 인풋 위젯
 iptAddr.insert(0, addr)
-iptAddr.place(x=250, y=283)
+iptAddr.place(x=240, y=283)
 btnSearch = tk.Button(fInput, text="Search", width=10, command=infoSearch)
-btnSearch.place(x=400, y=280)
+btnSearch.place(x=390, y=280)
 #안내 문구
 lb2 = tk.Label(window, text = "few: 빨강색(2~29개)")
 lb2.configure(foreground='red')
@@ -157,11 +157,12 @@ trv.heading('#5', text=header[4], anchor="center")
 # days_in_year = [88, 225, 365, 687, 4333, 10756, 30687, 60190, 90553]
 # plt.bar(range(len(days_in_year)), days_in_year)
 # plt.show()
-
-fig = Figure(figsize=(5, 5), dpi=70)
-ax = fig.add_subplot(211)
+lb2 = tk.Label(window, text="국내 코로나 현황")
+lb2.place(x=200, y=10)
+fig = Figure(figsize=(5, 2.4), dpi=100)
+ax = fig.add_subplot(111)
 canvas = FigureCanvasTkAgg(fig, fInput)
-canvas._tkcanvas.place(x=10, y=10)
+canvas._tkcanvas.place(x=10, y=30)
 
 #canvas.get_tk_widget().grid(column=0, row=1, sticky='w')
 
