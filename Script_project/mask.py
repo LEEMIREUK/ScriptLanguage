@@ -90,7 +90,7 @@ def OnDoubleClick(e):
   selectedItem = trv.item(trv.selection()[0])['values']
   # 0: name, 1: addr, 2: remain (주소와 판매처 이름 합치기)
   selectedAddr = iptAddr.get()+selectedItem[1]
- # print(selectedAddr) #합친 주소정보 확인
+  # print(selectedAddr) #합친 주소정보 확인
   googleURL = "https://www.google.com/search?ei=FLDfXv6hI4qRr7wPmbGH8A8&q="
   param = selectedAddr+" "+selectedItem[0]
   print(param) # 보낼 데이터 확인
@@ -99,19 +99,24 @@ def OnDoubleClick(e):
 
 window = tk.Tk()
 window.geometry("900x550")
-
 window.title("공적 마스크 판매 현황") #창 제목
+
+
 # 입력받는 곳
 fInput = tk.Frame(window)
 fInput.pack()
 lb1 = tk.Label(fInput, text = "주소: ")
-#lb1.grid(row = 0, column = 0, sticky="e")
 lb1.place(x=205, y=283)
+lb1 = tk.Label(window, text = "마스크 검색")
+lb1.configure(foreground='blue')
+lb1.place(x=125, y=283)
 iptAddr = tk.Entry(fInput,width=20) #주소 입력받는 인풋 위젯
 iptAddr.insert(0, addr)
 iptAddr.place(x=240, y=283)
 btnSearch = tk.Button(fInput, text="Search", width=10, command=infoSearch)
 btnSearch.place(x=390, y=280)
+
+
 #안내 문구
 lb2 = tk.Label(window, text = "few: 빨강색(2~29개)")
 lb2.configure(foreground='red')
@@ -124,9 +129,13 @@ lb2.configure(foreground='green')
 lb2.place(x=655, y=483)
 lb2 = tk.Label(window, text="더블클릭 시 구글에서 위치 검색")
 lb2.place(x=655, y=513)
+
+
 # 판매현황표시 --> treeview(like table)
 fInput.pack(fill=tk.BOTH, expand=1)
 trv = ttk.Treeview(fInput, columns=header, displaycolumns=header, padding=0)
+
+
 #트리뷰 스크롤 추가
 scrY = ttk.Scrollbar(orient='vertical', command=trv.yview)
 scrY.place(x=633, y=313, height=230)
@@ -149,23 +158,15 @@ trv.column('#5', width=120) # created_at
 trv.heading('#5', text=header[4], anchor="center")
 
 #현황 그래프 생성
-# ax = plt.subplot(211, xlim=(0, 50), ylim=(0, 1024))
-# days = [1,2,3,4,5,6,7]
-# graph_lab = tk.Label(window, text =("코로나 발생 현황"))
-# graph_lab.pack()
-#
 # days_in_year = [88, 225, 365, 687, 4333, 10756, 30687, 60190, 90553]
 # plt.bar(range(len(days_in_year)), days_in_year)
 # plt.show()
-lb2 = tk.Label(window, text="국내 코로나 현황")
-lb2.place(x=200, y=10)
+lb2 = tk.Label(window, text="국내 코로나 발생 현황")
+lb2.place(x=190, y=10)
 fig = Figure(figsize=(5, 2.4), dpi=100)
-ax = fig.add_subplot(111)
+ax = fig.add_subplot(111, xlim=(0, 5), ylim=(0, 100))
 canvas = FigureCanvasTkAgg(fig, fInput)
 canvas._tkcanvas.place(x=10, y=30)
-
-#canvas.get_tk_widget().grid(column=0, row=1, sticky='w')
-
 
 
 style = ttk.Style()
