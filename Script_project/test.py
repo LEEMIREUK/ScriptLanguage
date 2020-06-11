@@ -16,11 +16,9 @@ def create_draw(x_dots, y_dots):
     canvas = FigureCanvasTkAgg(global_fig, master=root)  # A tk.DrawingArea.
     canvas.draw()
     canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
-    toolbar = NavigationToolbar2Tk(canvas, root)
-    toolbar.update()
     canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
     root.update()
-    global_fig.canvas.draw()
+    global_fig.canvas.draw()\
 
-create_draw([3, 4], [2, 3])
+create_draw([3,4], [2,3])
 root.mainloop()

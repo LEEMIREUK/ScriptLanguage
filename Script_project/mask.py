@@ -7,8 +7,9 @@ import tkinter.messagebox as tkMsg
 from matplotlib import pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+import numpy as np
 
-url = "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json"
+mask_url = "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json"
 
 addr = "경기도 시흥시" #default address
 header = ["판매처","주소","재고량","입고일시","생성일시"]
@@ -20,7 +21,7 @@ def requetJson():
     # 응답코드(status_code) 반환
     # 200: 성공, 404:  존재하지 않는 URL
     addr = iptAddr.get()
-    res = rq.get(url, params={"address": addr})  # rq.post()
+    res = rq.get(mask_url, params={"address": addr})  # rq.post()
     print(res.status_code)
     if res.status_code == 200:
         print("[요청성공]")
@@ -162,9 +163,16 @@ trv.heading('#5', text=header[4], anchor="center")
 # plt.bar(range(len(days_in_year)), days_in_year)
 # plt.show()
 lb2 = tk.Label(window, text="국내 코로나 발생 현황")
-lb2.place(x=190, y=10)
-fig = Figure(figsize=(5, 2.4), dpi=100)
-ax = fig.add_subplot(111, xlim=(0, 5), ylim=(0, 100))
+lb2.place(x=190, y=5)
+fig = plt.Figure(figsize=(5, 2.4), dpi=100)
+ax = fig.add_subplot(1,1,1)
+ax.set_xlim([0, 5])
+ax.set_ylim([0, 100])
+ax.set_xlabel('day', size=10)
+ax.set_ylabel('count', size=10)
+x=np.array([0,1,2,3,4,5])
+y=np.array([50,40,60,50,80,10])
+ax.plot(x,y)
 canvas = FigureCanvasTkAgg(fig, fInput)
 canvas._tkcanvas.place(x=10, y=30)
 
