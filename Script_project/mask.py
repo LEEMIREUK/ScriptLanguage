@@ -8,6 +8,9 @@ from matplotlib import pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 import numpy as np
+import requests
+from bs4 import BeautifulSoup
+from datetime import datetime, timedelta
 
 mask_url = "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json"
 
@@ -159,20 +162,40 @@ trv.column('#5', width=120) # created_at
 trv.heading('#5', text=header[4], anchor="center")
 
 #현황 그래프 생성
-# days_in_year = [88, 225, 365, 687, 4333, 10756, 30687, 60190, 90553]
-# plt.bar(range(len(days_in_year)), days_in_year)
-# plt.show()
+now = datetime.now()
+key = 'MtLAG5t2b11STi2IYFynXQZdFRhAIW96u7RqSiFIB77ruJBarCvBhjuk7AmpF8w9pzxN2oLCAOaMx%2FaMyDJqmg%3D%3D'
+start_date = str(int((now + timedelta(days=-7)).strftime('%Y%m%d')))
+end_date = now.strftime('%Y%m%d')
+print(start_date, end_date)
+url = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey='+key+'&pageNo=1&numOfRows=10&startCreateDt='+start_date+'&endCreateDt='+end_date+'&'
+request = requests.get(url)
+soup = BeautifulSoup(request.content, 'html.parser')
+#확진자 배열
+decideCnt = []
+data = soup.find_all('decidecnt')
+for code in data:
+    decideCnt.append(code.text)
+
 lb2 = tk.Label(window, text="국내 코로나 발생 현황")
 lb2.place(x=190, y=5)
 fig = plt.Figure(figsize=(5, 2.4), dpi=100)
 ax = fig.add_subplot(1,1,1)
-ax.set_xlim([0, 5])
 ax.set_ylim([0, 100])
 ax.set_xlabel('day', size=10)
 ax.set_ylabel('count', size=10)
-x=np.array([0,1,2,3,4,5])
-y=np.array([50,40,60,50,80,10])
-ax.plot(x,y)
+x=np.array([round((int((now + timedelta(days=-6)).strftime('%Y%m%d')) - 20200000)/100, 2),
+            round((int((now + timedelta(days=-5)).strftime('%Y%m%d')) - 20200000)/100, 2),
+            round((int((now + timedelta(days=-4)).strftime('%Y%m%d')) - 20200000)/100, 2),
+            round((int((now + timedelta(days=-3)).strftime('%Y%m%d')) - 20200000)/100, 2),
+            round((int((now + timedelta(days=-2)).strftime('%Y%m%d')) - 20200000)/100, 2),
+            round((int((now + timedelta(days=-1)).strftime('%Y%m%d')) - 20200000)/100, 2)])
+y=np.array([int(decideCnt[0]) - int(decideCnt[1]),
+            int(decideCnt[1]) - int(decideCnt[2]),
+            int(decideCnt[2]) - int(decideCnt[3]),
+            int(decideCnt[3]) - int(decideCnt[4]),
+            int(decideCnt[4]) - int(decideCnt[5]),
+            int(decideCnt[5]) - int(decideCnt[6])])
+ax.plot(x,y,marker='o')
 canvas = FigureCanvasTkAgg(fig, fInput)
 canvas._tkcanvas.place(x=10, y=30)
 
