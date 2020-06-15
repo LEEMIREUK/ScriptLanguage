@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="40f65748-6dd3-4bb8-9e17-3642cf814866" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mask.py" beforeDir="false" afterPath="$PROJECT_DIR$/mask.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,7 +41,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.mask">
+  <component name="RunManager" selected="Python.test (1)">
     <configuration name="draw_image_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="untitled" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -133,10 +132,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.mask" />
         <item itemvalue="Python.test (1)" />
-        <item itemvalue="Python.draw_image_test" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.mask" />
+        <item itemvalue="Python.draw_image_test" />
       </list>
     </recent_temporary>
   </component>
@@ -160,6 +159,7 @@
       <workItem from="1591800994401" duration="36000" />
       <workItem from="1591850111752" duration="3502000" />
       <workItem from="1591864777460" duration="5202000" />
+      <workItem from="1592067958091" duration="5724000" />
     </task>
     <servers />
   </component>
@@ -180,11 +180,12 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Script_project$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1591865043305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Script_project$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1592073809400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$mask.coverage" NAME="mask Coverage Results" MODIFIED="1591786217893" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Script_project$test.coverage" NAME="test Coverage Results" MODIFIED="1592071403795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$draw_image_test.coverage" NAME="draw_image_test Coverage Results" MODIFIED="1591778977737" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1591778715724" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/untitled$test.coverage" NAME="test Coverage Results" MODIFIED="1591766351847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Script_project$mask.coverage" NAME="mask Coverage Results" MODIFIED="1591874859544" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Script_project$mask.coverage" NAME="mask Coverage Results" MODIFIED="1592071398635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
