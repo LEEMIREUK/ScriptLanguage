@@ -13,6 +13,7 @@ import world_data
 import hospital_map
 import world_corona
 import korea_corona
+import mask
 
 
 
@@ -52,7 +53,7 @@ def MaskButton():
     file_image = Image.open('image/마스크.png')
     file_image = file_image.resize((60, 60), Image.ANTIALIAS)
     mask_button.image = ImageTk.PhotoImage(file_image)
-    mask_button = Button(image = mask_button.image, comman=lambda:())
+    mask_button = Button(image = mask_button.image, comman=lambda: Open_Mask())
     mask_button.place(x=710, y=170)
 
 #국내 코로나 검진 병원 정보 버튼
@@ -112,6 +113,11 @@ def Open_URL():
 # 병원 지도 열기
 def Open_Map():
     hospital_map.Hospital_List(window)
+
+
+def Open_Mask():
+    mask.mask(window)
+
 
 ShowUI()
 window.mainloop()
