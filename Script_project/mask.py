@@ -11,6 +11,9 @@ import numpy as np
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
+from matplotlib import font_manager, rc
+font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
+rc('font', family=font_name, size=8.3)
 
 mask_url = "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json"
 
@@ -201,6 +204,8 @@ canvas._tkcanvas.place(x=10, y=30)
 
 
 #막대그래프
+lb2 = tk.Label(window, text="해외 코로나 발생 현황(단위 : 백만)")
+lb2.place(x=600, y=5)
 key_world = 'MtLAG5t2b11STi2IYFynXQZdFRhAIW96u7RqSiFIB77ruJBarCvBhjuk7AmpF8w9pzxN2oLCAOaMx%2FaMyDJqmg%3D%3D'
 url_world = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19NatInfStateJson?serviceKey='+key_world+'&pageNo=1&numOfRows=10&startCreateDt='+end_date +'&endCreateDt='+end_date+'&'
 request_world = requests.get(url_world)
@@ -212,24 +217,21 @@ for code in data_world:
     decide = code.find('natdefcnt')
     country = code.find('nationnm')
     decideCnt_world.append((int(decide.text), country.text))
-
 #확진자 많은 순서대로 정렬
 decideCnt_world.sort(key=lambda element : -element[0])
-print(decideCnt_world)
-
-datalst = [decideCnt_world[0][0], decideCnt_world[1][0], decideCnt_world[2][0], decideCnt_world[3][0],
-           decideCnt_world[4][0], decideCnt_world[5][0], decideCnt_world[6][0], decideCnt_world[7][0], decideCnt_world[8][0]]
-ff = Figure(figsize=(4,2.4), dpi=100)
+ff = Figure(figsize=(4.5,2.4), dpi=100)
 xx = ff.add_subplot(111)
 xx.set_ylim([50000, 2500000])
-ind = np.arange(len(datalst))
-#ind = [decideCnt_world[0][1], decideCnt_world[1][1], decideCnt_world[2][1], decideCnt_world[3][1],
-           #decideCnt_world[4][1], decideCnt_world[5][1], decideCnt_world[6][1], decideCnt_world[7][1], decideCnt_world[8][1]]
-rects1 = xx.bar(ind, datalst, 0.8)
+#ind = np.arange(len(datalst))
+ind = [decideCnt_world[0][1], decideCnt_world[1][1], decideCnt_world[2][1], decideCnt_world[3][1],
+           decideCnt_world[4][1], decideCnt_world[5][1], decideCnt_world[6][1], decideCnt_world[7][1], decideCnt_world[8][1]]
+datalst = [decideCnt_world[0][0], decideCnt_world[1][0], decideCnt_world[2][0], decideCnt_world[3][0],
+           decideCnt_world[4][0], decideCnt_world[5][0], decideCnt_world[6][0], decideCnt_world[7][0], decideCnt_world[8][0]]
+rects1 = xx.bar(ind, datalst, 0.7)
 canvas = FigureCanvasTkAgg(ff, master=fInput)
 canvas.draw()
 canvas.get_tk_widget().pack(side=tk.RIGHT)
-canvas._tkcanvas.place(x=500, y=30)
+canvas._tkcanvas.place(x=470, y=30)
 
 
 style = ttk.Style()
