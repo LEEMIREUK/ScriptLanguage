@@ -13,11 +13,8 @@ res = requests.get(URL+Key+page)
 soup = BeautifulSoup(res.content, 'html.parser')
 data = soup.find_all('item')
 
-<<<<<<< HEAD
 data_list = []
 global treeview
-=======
->>>>>>> c3cff1c24014ae77865d2775ee146b3e569a7951
 
 def Hospital_List(window):
     global data_list
@@ -26,25 +23,21 @@ def Hospital_List(window):
         city = code.find('sggunm')
         name = code.find('yadmnm')
         tel = code.find('telno')
-<<<<<<< HEAD
         kind = str((code.find('spcladmtycd')).string.strip())
         if kind == 'A0':
             kind = '국민안심병원'
         if kind == '97':
             kind = '코로나검사 실시기관'
-=======
         kind = code.find('spcladmtycd')
         if kind == 'A0':
             kind = "국민안심병원"
         elif kind == '97':
             kind = "코로나검사 실시기관"
->>>>>>> c3cff1c24014ae77865d2775ee146b3e569a7951
         elif kind == '99':
             kind = '선별진료소 운영기관'
         data_list.append((do.text + city.text, name.text, tel.text, kind))
     print(data_list)
 
-<<<<<<< HEAD
     # 검색
     default_search = "경기 시흥시"
     lb1 = tkinter.Label(window, width=10, text=" 주소 ")
@@ -64,7 +57,6 @@ def Hospital_List(window):
     scrY.place(x=675, y=151, height=250)
     treeview.place(x=10, y=150)
     treeview.columnconfigure(0, weight=1)
-=======
     lb1 = tkinter.Label(window, text=" 주소 ")
     lb1.place(x=200, y=100)
     lb1.configure(foreground='greenyellow')
@@ -73,7 +65,6 @@ def Hospital_List(window):
     iptAddr.place(x=240, y=280)
     search = tkinter.Button(window, text="검색", width=10, command=lambda: ())
     search.place(x=390, y=280)
->>>>>>> c3cff1c24014ae77865d2775ee146b3e569a7951
 
     treeview.column("#0", width=50, anchor="center")
     treeview.heading("#0", text=table_name[0])
@@ -86,13 +77,9 @@ def Hospital_List(window):
     treeview.column("#4", width=150, anchor="center")
     treeview.heading("#4", text=table_name[4])
     for i in range(len(data_list)):
-<<<<<<< HEAD
         treeview.insert('', 'end', text=i+1, values=data_list[i])
-=======
         treeview.insert('', 'end', text=i, values=data_list[i], iid=str(i)+"번")
     treeview.place(x=10, y=150)
-
->>>>>>> c3cff1c24014ae77865d2775ee146b3e569a7951
 
     treeview.tag_bind()
 
