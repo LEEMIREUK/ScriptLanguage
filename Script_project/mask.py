@@ -167,14 +167,14 @@ key = 'MtLAG5t2b11STi2IYFynXQZdFRhAIW96u7RqSiFIB77ruJBarCvBhjuk7AmpF8w9pzxN2oLCA
 start_date = str(int((now + timedelta(days=-7)).strftime('%Y%m%d')))
 end_date = now.strftime('%Y%m%d')
 print(start_date, end_date)
-url = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey='+key+'&pageNo=1&numOfRows=10&startCreateDt='+start_date+'&endCreateDt='+end_date+'&'
-request = requests.get(url)
-soup = BeautifulSoup(request.content, 'html.parser')
+url_korea = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey='+key+'&pageNo=1&numOfRows=10&startCreateDt='+start_date+'&endCreateDt='+end_date+'&'
+request_korea = requests.get(url_korea)
+soup_korea = BeautifulSoup(request_korea.content, 'html.parser')
 #확진자 배열
-decideCnt = []
-data = soup.find_all('decidecnt')
+decideCnt_korea = []
+data = soup_korea.find_all('decidecnt')
 for code in data:
-    decideCnt.append(code.text)
+    decideCnt_korea.append(code.text)
 
 lb2 = tk.Label(window, text="국내 코로나 발생 현황")
 lb2.place(x=190, y=5)
@@ -189,15 +189,47 @@ x=np.array([round((int((now + timedelta(days=-6)).strftime('%Y%m%d')) - 20200000
             round((int((now + timedelta(days=-3)).strftime('%Y%m%d')) - 20200000)/100, 2),
             round((int((now + timedelta(days=-2)).strftime('%Y%m%d')) - 20200000)/100, 2),
             round((int((now + timedelta(days=-1)).strftime('%Y%m%d')) - 20200000)/100, 2)])
-y=np.array([int(decideCnt[0]) - int(decideCnt[1]),
-            int(decideCnt[1]) - int(decideCnt[2]),
-            int(decideCnt[2]) - int(decideCnt[3]),
-            int(decideCnt[3]) - int(decideCnt[4]),
-            int(decideCnt[4]) - int(decideCnt[5]),
-            int(decideCnt[5]) - int(decideCnt[6])])
+y=np.array([int(decideCnt_korea[0]) - int(decideCnt_korea[1]),
+            int(decideCnt_korea[1]) - int(decideCnt_korea[2]),
+            int(decideCnt_korea[2]) - int(decideCnt_korea[3]),
+            int(decideCnt_korea[3]) - int(decideCnt_korea[4]),
+            int(decideCnt_korea[4]) - int(decideCnt_korea[5]),
+            int(decideCnt_korea[5]) - int(decideCnt_korea[6])])
 ax.plot(x,y,marker='o')
 canvas = FigureCanvasTkAgg(fig, fInput)
 canvas._tkcanvas.place(x=10, y=30)
+
+
+#막대그래프
+key_world = 'MtLAG5t2b11STi2IYFynXQZdFRhAIW96u7RqSiFIB77ruJBarCvBhjuk7AmpF8w9pzxN2oLCAOaMx%2FaMyDJqmg%3D%3D'
+url_world = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19NatInfStateJson?serviceKey='+key_world+'&pageNo=1&numOfRows=10&startCreateDt='+end_date +'&endCreateDt='+end_date+'&'
+request_world = requests.get(url_world)
+soup_world = BeautifulSoup(request_world.content, 'html.parser')
+decideCnt_world = []
+#데이터 넣기
+data_world = soup_world.find_all('item')
+for code in data_world:
+    decide = code.find('natdefcnt')
+    country = code.find('nationnm')
+    decideCnt_world.append((int(decide.text), country.text))
+
+#확진자 많은 순서대로 정렬
+decideCnt_world.sort(key=lambda element : -element[0])
+print(decideCnt_world)
+
+datalst = [decideCnt_world[0][0], decideCnt_world[1][0], decideCnt_world[2][0], decideCnt_world[3][0],
+           decideCnt_world[4][0], decideCnt_world[5][0], decideCnt_world[6][0], decideCnt_world[7][0], decideCnt_world[8][0]]
+ff = Figure(figsize=(4,2.4), dpi=100)
+xx = ff.add_subplot(111)
+xx.set_ylim([50000, 2500000])
+ind = np.arange(len(datalst))
+#ind = [decideCnt_world[0][1], decideCnt_world[1][1], decideCnt_world[2][1], decideCnt_world[3][1],
+           #decideCnt_world[4][1], decideCnt_world[5][1], decideCnt_world[6][1], decideCnt_world[7][1], decideCnt_world[8][1]]
+rects1 = xx.bar(ind, datalst, 0.8)
+canvas = FigureCanvasTkAgg(ff, master=fInput)
+canvas.draw()
+canvas.get_tk_widget().pack(side=tk.RIGHT)
+canvas._tkcanvas.place(x=500, y=30)
 
 
 style = ttk.Style()

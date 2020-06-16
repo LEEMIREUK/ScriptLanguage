@@ -1,22 +1,23 @@
-import requests
-from bs4 import BeautifulSoup
-from datetime import datetime
-
-now = datetime.now()
-key = 'MtLAG5t2b11STi2IYFynXQZdFRhAIW96u7RqSiFIB77ruJBarCvBhjuk7AmpF8w9pzxN2oLCAOaMx%2FaMyDJqmg%3D%3D'
-start_date = str(int(now.strftime('%Y%m%d'))-7)
-end_date = now.strftime('%Y%m%d')
-print(start_date, end_date)
-url = 'http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson?serviceKey='+key+'&pageNo=1&numOfRows=10&startCreateDt='+start_date+'&endCreateDt='+end_date+'&'
+from tkinter import scrolledtext as tkst
+import numpy as np
+import matplotlib
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
+import tkinter as tk
 
 
-request = requests.get(url)
-soup = BeautifulSoup(request.content, 'html.parser')
+matplotlib.use('TkAgg')
 
-decideCnt = []
-data = soup.find_all('decidecnt')
+ww = tk.Tk()
 
-for code in data:
-    decideCnt.append(code.text)
+datalst = [31, 41, 59, 26, 53, 58, 97, 96, 36]
+ff = Figure(figsize=(6,6), dpi=100)
+xx = ff.add_subplot(111)
+ind = np.arange(len(datalst))
+rects1 = xx.bar(ind, datalst, 0.8)
+canvas = FigureCanvasTkAgg(ff, master=ww)
+canvas.draw()
+canvas.get_tk_widget().pack(side=tk.RIGHT)
 
-print(decideCnt)
+
+ww.mainloop()
