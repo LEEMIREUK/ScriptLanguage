@@ -11,6 +11,8 @@ rc('font', family=font_name)
 import webbrowser
 import world_data
 import hospital_map
+import world_corona
+import korea_corona
 
 
 
@@ -32,7 +34,7 @@ def WorldButton():
     file_image = Image.open('image/지구.png')
     file_image = file_image.resize((60, 60), Image.ANTIALIAS)
     world_button.image = ImageTk.PhotoImage(file_image)
-    world_button = Button(image = world_button.image, comman=lambda:())
+    world_button = Button(image = world_button.image, comman=lambda:Open_world_corona())
     world_button.place(x=710, y=10)
 
 # 국내 확진자 현황 버튼
@@ -41,7 +43,7 @@ def KoreaButton():
     file_image = Image.open('image/한국.png')
     file_image = file_image.resize((60, 60), Image.ANTIALIAS)
     korea_button.image = ImageTk.PhotoImage(file_image)
-    korea_button = Button(image = korea_button.image, comman=lambda:())
+    korea_button = Button(image = korea_button.image, comman=lambda: Open_korea_corona())
     korea_button.place(x=710, y=90)
 
 # 국내 공적 마스크 판매 위치 및 제고 버든
@@ -94,9 +96,18 @@ def onclick(event, list):
 #    world_data.Show_Graph(window)
     world_data.Pie_Graph(window)
 
+def Open_korea_corona():
+    korea_corona.corona(window)
+
+
+def Open_world_corona():
+    world_corona.corona(window)
+
+
 # 네이버 뉴스창 열어주기
 def Open_URL():
     webbrowser.open(news)
+
 
 # 병원 지도 열기
 def Open_Map():

@@ -13,6 +13,7 @@ res = requests.get(URL+Key+page)
 soup = BeautifulSoup(res.content, 'html.parser')
 data = soup.find_all('item')
 
+
 def Hospital_List(window):
     data_list = []
     for code in data:
@@ -21,7 +22,7 @@ def Hospital_List(window):
         name = code.find('yadmnm')
         tel = code.find('telno')
         kind = code.find('spcladmtycd')
-        if kind =='A0':
+        if kind == 'A0':
             kind = "국민안심병원"
         elif kind == '97':
             kind = "코로나검사 실시기관"
@@ -31,15 +32,13 @@ def Hospital_List(window):
 
     print(data_list)
 
-    fput = tkinter.Frame(window)
-    fput.pack()
-    lb1 = tkinter.Label(fput, text=" 주소 ")
+    lb1 = tkinter.Label(window, text=" 주소 ")
     lb1.place(x=200, y=100)
     lb1.configure(foreground='greenyellow')
-    iptAddr = tkinter.Entry(fput, width=20)
+    iptAddr = tkinter.Entry(window, width=20)
     iptAddr.insert(0, data_list)
     iptAddr.place(x=240, y=280)
-    search = tkinter.Button(fput, text="검색", width=10, command=lambda : ())
+    search = tkinter.Button(window, text="검색", width=10, command=lambda: ())
     search.place(x=390, y=280)
 
     treeview = tkinter.ttk.Treeview(window, columns=["one", "two", "three", "four", "five"],
@@ -55,7 +54,7 @@ def Hospital_List(window):
     treeview.column("#4", width=100, anchor="center")
     treeview.heading("#4", text=table_name[4])
     for i in range(len(data_list)):
-        treeview.insert('' , 'end', text=i, values=data_list[i], iid=str(i)+"번")
+        treeview.insert('', 'end', text=i, values=data_list[i], iid=str(i)+"번")
     treeview.place(x=10, y=150)
 
 
