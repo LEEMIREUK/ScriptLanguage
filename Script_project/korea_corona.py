@@ -65,9 +65,9 @@ def corona(window):
     xx = ff.add_subplot(111)
     ff.patch.set_facecolor('aquamarine')
     xx.set_ylim([10, 7000])
-    ind = [decideCnt_world[1][1], decideCnt_world[2][1], decideCnt_world[3][1], decideCnt_world[4][1], decideCnt_world[5][1], decideCnt_world[6][1],
+    ind = [decideCnt_world[1][1], decideCnt_world[2][1], decideCnt_world[3][1], decideCnt_world[4][1] , decideCnt_world[6][1],
            decideCnt_world[7][1], decideCnt_world[8][1], decideCnt_world[9][1], decideCnt_world[10][1], decideCnt_world[11][1], decideCnt_world[12][1]]
-    datalst = [decideCnt_world[1][0], decideCnt_world[2][0], decideCnt_world[3][0], decideCnt_world[4][0], decideCnt_world[5][0], decideCnt_world[6][0],
+    datalst = [decideCnt_world[1][0], decideCnt_world[2][0], decideCnt_world[3][0], decideCnt_world[4][0], decideCnt_world[6][0],
                decideCnt_world[7][0], decideCnt_world[8][0], decideCnt_world[9][0], decideCnt_world[10][0], decideCnt_world[11][0], decideCnt_world[12][0]]
     rects1 = xx.bar(ind, datalst, 0.7)
     canvas = FigureCanvasTkAgg(ff, master=window)
