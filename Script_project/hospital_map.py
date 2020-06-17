@@ -13,6 +13,7 @@ res = requests.get(URL+Key+page)
 soup = BeautifulSoup(res.content, 'html.parser')
 data = soup.find_all('item')
 
+
 data_list = []
 
 
@@ -87,8 +88,6 @@ def DoubleClick(event):
 def Info_List():
     for row in treeview.get_children():
         treeview.delete(row)
-
-    for store in data_list['stores']:
 
     print(data_list)
 
