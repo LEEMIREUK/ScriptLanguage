@@ -1,5 +1,6 @@
 import time
 import telepot
+import json
 from telepot.loop import MessageLoop
 from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
 from pprint import pprint
@@ -68,25 +69,16 @@ def CityData():
 citylist = CityData()
 print(citylist)
 
-def MaskData():
-    Mask_URL = "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json"
-    global stores
-    stores = [] # store list
-    #해당 주소로 판매처 및 재고현황 정보 요청
-    def requetJson():
-        global addr
-        # 응답코드(status_code) 반환
-        # 200: 성공, 404:  존재하지 않는 URL
-        res = requests.get(Mask_URL, params={"address": addr})  # rq.post()
-        print(res.status_code)
-        if res.status_code == 200:
-            print("[요청성공]")
-        else:
-            print("[알수 없는 에러:%s]\n " % res)
-            return -1
+def FindAddress(address):
+    url = "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=" + requests.utils.unquote(address)
+    response = requests.get(url)
+    return json.loads(response.content)
 
-        # load json data
-        return json.loads(res.content)
+print(FindAddress("경기도 시흥시"))
+
+def Divide(msg):
+    ad, com = msg.split('-')
+    return ad
 
 Hos_URL = 'http://apis.data.go.kr/B551182/pubReliefHospService/getpubReliefHospList?serviceKey='
 Hos_Key ='MtLAG5t2b11STi2IYFynXQZdFRhAIW96u7RqSiFIB77ruJBarCvBhjuk7AmpF8w9pzxN2oLCAOaMx%2FaMyDJqmg%3D%3D'
@@ -145,12 +137,25 @@ def handle(msg):
                         '''
         bot.sendMessage(chat_id, text3)
     # 마스크 현황
-    elif ("" in msg['text']) and ("마스크" in msg['text']):
-        bot.sendMessage(chat_id, "시 공적 마스크 판매 현황에 대한 정보를 알려드리겠습니다.")
+    elif "마스크" in msg['text']:
+        Divide(msg['text'])
+        bot.sendMessage(chat_id, f"{msg['text']} 공적 마스크 판매 현황에 대한 정보를 알려드리겠습니다.")
+        addd = FindAddress(Divide(msg['text']))
+        adress = addd['address'].split()
+        ad = adress[0]+adress[1]
+        temp = addd['stores']
+        print(ad)
+        for i in range(len(temp)):
+            text4 = f'''
+주소:  {temp[i]['addr']}
+이름:  {temp[i]['name']}
+지도:  'https://map.naver.com/v5/search/{ad}{temp[i]['name']}/place'
+                '''
+            bot.sendMessage(chat_id, text4)
     else:
         bot.sendMessage(chat_id, "도와줄수가 없어요... 다른 키워드를 입력해주세요\n,"
-                                 "ex) 해외 확진자, 국내 확진자, 최근 확진자 수, 경기도 시흥시 마스크")
-
+                                 "ex) 해외 확진자, 국내 확진자, 최근 확진자 수, 경기도 시흥시-마스크")
+#https://map.naver.com/v5/search/%EC%9D%80%EC%95%BD%EA%B5%AD/place/19512987?c=14143150.0164738,4510522.3476050,15,0,0,0,dh
 bot.message_loop(handle)
 while True:
     time.sleep(10)
