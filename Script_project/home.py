@@ -21,6 +21,7 @@ window = Tk()
 window.geometry("800x500+500+200")          #창 크기
 window.configure(background='aquamarine')   #배경색
 window.title("Corona")                      #창 제목
+window.resizable(False, False)              #화면크기조절 불가능
 
 news ='https://search.naver.com/search.naver?query=%EC%BD%94%EB%A1%9C%EB%82%98&where=news&ie=utf8&sm=nws_hty'
 
