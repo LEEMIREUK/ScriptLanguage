@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import webbrowser
-from tkinter import *
 import tkinter.ttk
 
 URL = 'http://apis.data.go.kr/B551182/pubReliefHospService/getpubReliefHospList?serviceKey='
@@ -13,9 +12,7 @@ res = requests.get(URL+Key+page)
 soup = BeautifulSoup(res.content, 'html.parser')
 data = soup.find_all('item')
 
-
 data_list = []
-
 
 def Hospital_List(window):
     global data_list
