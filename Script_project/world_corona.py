@@ -35,14 +35,30 @@ def corona(window):
     ff.patch.set_facecolor('aquamarine')
     xx.set_ylim([50000, 2500000])
     ind = [decideCnt_world[0][1], decideCnt_world[1][1], decideCnt_world[2][1], decideCnt_world[3][1],
-               decideCnt_world[4][1], decideCnt_world[5][1], decideCnt_world[6][1], decideCnt_world[7][1], decideCnt_world[8][1]]
+               decideCnt_world[4][1], decideCnt_world[5][1], decideCnt_world[6][1], decideCnt_world[7][1]]
     datalst = [decideCnt_world[0][0], decideCnt_world[1][0], decideCnt_world[2][0], decideCnt_world[3][0],
-               decideCnt_world[4][0], decideCnt_world[5][0], decideCnt_world[6][0], decideCnt_world[7][0], decideCnt_world[8][0]]
+               decideCnt_world[4][0], decideCnt_world[5][0], decideCnt_world[6][0], decideCnt_world[7][0]]
     rects1 = xx.bar(ind, datalst, 0.7)
     canvas = FigureCanvasTkAgg(ff, master=window)
     canvas.get_tk_widget().pack(side=tk.RIGHT)
     canvas._tkcanvas.place(x=100, y=10)
     lb2 = tk.Label(window, text="해외 코로나 발생 현황(단위 : 백만)", bg='aquamarine', font=20)
     lb2.place(x=230, y=20)
+    lb2 = tk.Label(window, text=str(decideCnt_world[0][0]), bg='white')
+    lb2.place(x=170, y=100)
+    lb2 = tk.Label(window, text=str(decideCnt_world[1][0]), bg='white')
+    lb2.place(x=214, y=240)
+    lb2 = tk.Label(window, text=str(decideCnt_world[2][0]), bg='white')
+    lb2.place(x=264, y=340)
+    lb2 = tk.Label(window, text=str(decideCnt_world[3][0]), bg='white')
+    lb2.place(x=310, y=363)
+    lb2 = tk.Label(window, text=str(decideCnt_world[4][0]), bg='white')
+    lb2.place(x=355, y=390)
+    lb2 = tk.Label(window, text=str(decideCnt_world[5][0]), bg='white')
+    lb2.place(x=400, y=397)
+    lb2 = tk.Label(window, text=str(decideCnt_world[6][0]), bg='white')
+    lb2.place(x=446, y=400)
+    lb2 = tk.Label(window, text=str(decideCnt_world[7][0]), bg='white')
+    lb2.place(x=492, y=403)
 
 #window.mainloop()

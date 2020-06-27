@@ -68,29 +68,29 @@ def mask(window):
 
     # 입력받는 곳
     lb1 = tk.Label(window, text = "주소: ",bg='aquamarine')
-    lb1.place(x=215, y=120)
+    lb1.place(x=215, y=80)
     lb1 = tk.Label(window, text = "마스크 검색",bg='aquamarine')
     lb1.configure(foreground='blue')
-    lb1.place(x=135, y=120)
+    lb1.place(x=135, y=80)
     iptAddr = tk.Entry(window,width=20)
     iptAddr.insert(0, addr)
-    iptAddr.place(x=250, y=120)
+    iptAddr.place(x=250, y=80)
     btnSearch = tk.Button(window, text="Search", width=10, command=infoSearch)
-    btnSearch.place(x=400, y=117)
+    btnSearch.place(x=400, y=77)
 
 
     #안내 문구
     lb2 = tk.Label(window, text = "few: 빨강색(2~29개)",bg='aquamarine')
     lb2.configure(foreground='red')
-    lb2.place(x=20, y=390)
+    lb2.place(x=20, y=350)
     lb2 = tk.Label(window, text = "some: 노랑색(30~99개)",bg='aquamarine')
     lb2.configure(foreground='orange')
-    lb2.place(x=20, y=410)
+    lb2.place(x=20, y=370)
     lb2 = tk.Label(window, text = "plenty: 녹색(100개 이상)",bg='aquamarine')
     lb2.configure(foreground='green')
-    lb2.place(x=20, y=430)
+    lb2.place(x=20, y=390)
     lb2 = tk.Label(window, text="더블클릭 시 구글에서 위치 검색",bg='aquamarine')
-    lb2.place(x=20, y=450)
+    lb2.place(x=20, y=414)
 
 
     trv = ttk.Treeview(window, columns=header, displaycolumns=header, padding=0)
@@ -98,9 +98,9 @@ def mask(window):
 
     #트리뷰 스크롤 추가
     scrY = ttk.Scrollbar(orient='vertical', command=trv.yview)
-    scrY.place(x=633, y=148, height=230)
+    scrY.place(x=633, y=108, height=230)
     trv.config(yscrollcommand=scrY.set)
-    trv.place(x=10, y=150)
+    trv.place(x=10, y=110)
     trv.columnconfigure(0, weight=1)
 
     #데이터 header 설정

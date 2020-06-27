@@ -46,6 +46,18 @@ def corona(window):
     canvas._tkcanvas.place(x=100, y=10)
     lb2 = tk.Label(window, text="국내 코로나 발생 현황", bg='aquamarine', font=8)
     lb2.place(x=270, y=15)
+    lb2 = tk.Label(window, text=str(int(decideCnt_korea[0]) - int(decideCnt_korea[1])), bg='white', font=2)
+    lb2.place(x=172, y=200)
+    lb2 = tk.Label(window, text=str(int(decideCnt_korea[1]) - int(decideCnt_korea[2])), bg='white', font=2)
+    lb2.place(x=240, y=200)
+    lb2 = tk.Label(window, text=str(int(decideCnt_korea[2]) - int(decideCnt_korea[3])), bg='white', font=2)
+    lb2.place(x=309, y=200)
+    lb2 = tk.Label(window, text=str(int(decideCnt_korea[3]) - int(decideCnt_korea[4])), bg='white', font=2)
+    lb2.place(x=380, y=200)
+    lb2 = tk.Label(window, text=str(int(decideCnt_korea[4]) - int(decideCnt_korea[5])), bg='white', font=2)
+    lb2.place(x=450, y=200)
+    lb2 = tk.Label(window, text=str(int(decideCnt_korea[5]) - int(decideCnt_korea[6])), bg='white', font=2)
+    lb2.place(x=520, y=200)
 
     #도시별 현황
     key_world = 'MtLAG5t2b11STi2IYFynXQZdFRhAIW96u7RqSiFIB77ruJBarCvBhjuk7AmpF8w9pzxN2oLCAOaMx%2FaMyDJqmg%3D%3D'
@@ -64,14 +76,32 @@ def corona(window):
     ff = Figure(figsize=(5,2.4), dpi=100)
     xx = ff.add_subplot(111)
     ff.patch.set_facecolor('aquamarine')
-    xx.set_ylim([10, 7000])
-    ind = [decideCnt_world[1][1], decideCnt_world[2][1], decideCnt_world[3][1], decideCnt_world[4][1] , decideCnt_world[6][1],
-           decideCnt_world[7][1], decideCnt_world[8][1], decideCnt_world[9][1], decideCnt_world[10][1], decideCnt_world[11][1], decideCnt_world[12][1]]
-    datalst = [decideCnt_world[1][0], decideCnt_world[2][0], decideCnt_world[3][0], decideCnt_world[4][0], decideCnt_world[6][0],
-               decideCnt_world[7][0], decideCnt_world[8][0], decideCnt_world[9][0], decideCnt_world[10][0], decideCnt_world[11][0], decideCnt_world[12][0]]
+    xx.set_ylim([10, 8000])
+    ind = [decideCnt_world[2][1], decideCnt_world[4][1], decideCnt_world[6][1], decideCnt_world[8][1],
+        decideCnt_world[12][1], decideCnt_world[14][1], decideCnt_world[16][1], decideCnt_world[18][1], decideCnt_world[20][1]]
+    datalst = [decideCnt_world[2][0], decideCnt_world[4][0], decideCnt_world[6][0], decideCnt_world[8][0],
+        decideCnt_world[12][0], decideCnt_world[14][0], decideCnt_world[16][0], decideCnt_world[18][0], decideCnt_world[20][0]]
     rects1 = xx.bar(ind, datalst, 0.7)
     canvas = FigureCanvasTkAgg(ff, master=window)
     canvas.get_tk_widget().pack(side=tk.RIGHT)
     canvas._tkcanvas.place(x=100, y=255)
     lb2 = tk.Label(window, text="국내 시,도별 코로나 발생 현황", bg='aquamarine', font=8)
     lb2.place(x=230, y=255)
+    lb2 = tk.Label(window, text=str(decideCnt_world[2][0]), bg='white', font=2)
+    lb2.place(x=175, y=285)
+    lb2 = tk.Label(window, text=str(decideCnt_world[4][0]), bg='white', font=2)
+    lb2.place(x=215, y=410)
+    lb2 = tk.Label(window, text=str(decideCnt_world[6][0]), bg='white', font=2)
+    lb2.place(x=254, y=412)
+    lb2 = tk.Label(window, text=str(decideCnt_world[8][0]), bg='white', font=2)
+    lb2.place(x=296, y=414)
+    lb2 = tk.Label(window, text=str(decideCnt_world[12][0]), bg='white', font=2)
+    lb2.place(x=341, y=434)
+    lb2 = tk.Label(window, text=str(decideCnt_world[14][0]), bg='white', font=2)
+    lb2.place(x=381, y=444)
+    lb2 = tk.Label(window, text=str(decideCnt_world[16][0]), bg='white', font=2)
+    lb2.place(x=421, y=444)
+    lb2 = tk.Label(window, text=str(decideCnt_world[18][0]), bg='white', font=2)
+    lb2.place(x=461, y=444)
+    lb2 = tk.Label(window, text=str(decideCnt_world[20][0]), bg='white', font=2)
+    lb2.place(x=501, y=444)
