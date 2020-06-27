@@ -7,7 +7,6 @@ from matplotlib import font_manager, rc
 font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
 rc('font', family=font_name, size=8.3)
 
-
 def mask(window):
     mask_url = "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json"
 
@@ -116,8 +115,6 @@ def mask(window):
     trv.heading('#4', text=header[3], anchor="center")
     trv.column('#5', width=120) # created_at
     trv.heading('#5', text=header[4], anchor="center")
-
-
 
     style = ttk.Style()
     style.map('Treeview', foreground=fixed_map('foreground'),

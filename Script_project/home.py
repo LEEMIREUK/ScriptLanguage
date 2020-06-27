@@ -1,17 +1,10 @@
 from tkinter import *
 from PIL import Image, ImageTk
-from glob import glob
 #한글 적용
 from matplotlib import font_manager, rc
-from glob import glob
-import subprocess
 import os
-import sys
-from subprocess import Popen
 font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
 rc('font', family=font_name)
-
-print("aa")
 
 import webbrowser
 import hospital_map
@@ -19,9 +12,6 @@ import world_corona
 import korea_corona
 import mask
 import telegrambot
-#file1 = glob(telegrambot.py)
-
-#def titlename():
 
 # 국가별 확진자 현황 버튼
 def WorldButton(window):
@@ -96,7 +86,6 @@ def Open_world_corona(window):
     ShowUI(new_Frame)
     world_corona.corona(new_Frame)
 
-
 def Open_korea_corona(window):
     window.destroy()
     new_Frame = Tk()
@@ -112,7 +101,6 @@ def Open_URL():
     news = 'https://search.naver.com/search.naver?query=%EC%BD%94%EB%A1%9C%EB%82%98&where=news&ie=utf8&sm=nws_hty'
     webbrowser.open(news)
 
-
 # 병원 지도 열기
 def Open_Map(window):
     window.destroy()
@@ -123,7 +111,6 @@ def Open_Map(window):
     new_Frame.resizable(False, False)  # 화면크기조절 불가능
     ShowUI(new_Frame)
     hospital_map.Hospital_List(new_Frame)
-
 
 def Open_Mask(window):
     window.destroy()
@@ -136,18 +123,14 @@ def Open_Mask(window):
     mask.mask(new_Frame)
 
 def telbot():
-    telegrambot.telout = True
-    subprocess.call(['python.exe', 'telegrambot.py', 'htmlfilename.htm'])
+    os.startfile("telegrambot.py")
 
-def main():
+if __name__ == '__main__':
     window = Tk()
     window.geometry("800x500+500+200")  # 창 크기
     window.configure(background='aquamarine')  # 배경색
     window.title("Corona")  # 창 제목
     window.resizable(False, False)  # 화면크기조절 불가능
-
+    korea_corona.corona(window)
     ShowUI(window)
     window.mainloop()
-
-
-main()

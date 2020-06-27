@@ -8,11 +8,6 @@ from matplotlib import font_manager, rc
 font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
 rc('font', family=font_name, size=8.3)
 
-
-#window = tk.Tk()
-#window.geometry("900x550")
-#window.title("공적 마스크 판매 현황") #창 제목
-
 def corona(window):
     #현황 그래프 생성
     now = datetime.now()
