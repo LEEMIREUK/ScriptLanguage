@@ -8,12 +8,14 @@ import requests
 import os
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
+import sys
+
 # 챗봇
 token = '1238627505:AAEQPKXQg1rglXLITWyef7d5NSmbE1OGIzg'
 chat_id = '1213595518'
 bot = telepot.Bot(token)
 now = datetime.now()
-
+ind = 0
 
 # 국외 코로나
 def WorldData():
@@ -30,7 +32,8 @@ def WorldData():
         decideCnt_world.append((int(decide.text), country.text))
     decideCnt_world.sort(key=lambda element: -element[0])
     return decideCnt_world
-wordlist = WorldData()
+
+#wordlist = WorldData()
 
 # 국내 코로나
 def KoeraData():
@@ -48,8 +51,7 @@ def KoeraData():
         decideCnt_korea.append(code.text)
     return decideCnt_korea
 
-korealist = KoeraData()
-print(korealist)
+#korealist = KoeraData()
 
 def CityData():
     global now
@@ -66,41 +68,35 @@ def CityData():
     decideCnt_world.sort(key=lambda element: -element[0])
     return decideCnt_world
 
-citylist = CityData()
-print(citylist)
+#citylist = CityData()
 
 def FindAddress(address):
     url = "https://8oi9s0nnth.apigw.ntruss.com/corona19-masks/v1/storesByAddr/json?address=" + requests.utils.unquote(address)
     response = requests.get(url)
     return json.loads(response.content)
 
-print(FindAddress("경기도 시흥시"))
-
 def Divide(msg):
     ad, com = msg.split('-')
     return ad
 
-Hos_URL = 'http://apis.data.go.kr/B551182/pubReliefHospService/getpubReliefHospList?serviceKey='
-Hos_Key ='MtLAG5t2b11STi2IYFynXQZdFRhAIW96u7RqSiFIB77ruJBarCvBhjuk7AmpF8w9pzxN2oLCAOaMx%2FaMyDJqmg%3D%3D'
-Hos_page ='&pageNo=1&numOfRows=1079&spclAdmTyCd=&'
-
-
-
-
+# Hos_URL = 'http://apis.data.go.kr/B551182/pubReliefHospService/getpubReliefHospList?serviceKey='
+# Hos_Key ='MtLAG5t2b11STi2IYFynXQZdFRhAIW96u7RqSiFIB77ruJBarCvBhjuk7AmpF8w9pzxN2oLCAOaMx%2FaMyDJqmg%3D%3D'
+# Hos_page ='&pageNo=1&numOfRows=1079&spclAdmTyCd=&'
 
 def handle(msg):
     global now
     content_type, chat_type, chat_id = telepot.glance(msg)
     response = bot.getUpdates()
     pprint(response)
-
     if content_type != 'text':
         bot.sendMessage(chat_id, "텍스트로 말씀해주세요~")
         return
-
     # 인사
     if msg['text'].startswith('안녕'):
         bot.sendMessage(chat_id, "안녕하세요 " + msg['from']['first_name'] +"님! 무엇을 도와드릴까요??")
+    if msg['text'].startswith('종료'):
+        global ind
+        ind = 1
     # 금일 해외 코로나 확진사 수와 나라별 수
     elif ("해외" in msg['text']) and ("확진자" in msg['text']):
         bot.sendMessage(chat_id, "국외 코로나 현황에 대한 정보를 알려드리겠습니다.")
@@ -156,6 +152,19 @@ def handle(msg):
         bot.sendMessage(chat_id, "도와줄수가 없어요... 다른 키워드를 입력해주세요\n,"
                                  "ex) 해외 확진자, 국내 확진자, 최근 확진자 수, 경기도 시흥시-마스크")
 #https://map.naver.com/v5/search/%EC%9D%80%EC%95%BD%EA%B5%AD/place/19512987?c=14143150.0164738,4510522.3476050,15,0,0,0,dh
-bot.message_loop(handle)
-while True:
-    time.sleep(10)
+
+
+
+if __name__ == '__main__':
+    wordlist = WorldData()
+    print("aa")
+    korealist = KoeraData()
+    print("bb")
+    citylist = CityData()
+    print("cc")
+    bot.message_loop(handle)
+    if ind == 1:
+        exit()
+    while True:
+        time.sleep(10)
+
