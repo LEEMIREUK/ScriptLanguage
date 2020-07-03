@@ -28,7 +28,7 @@ def corona(window):
     ff = Figure(figsize=(5,5), dpi=100)
     xx = ff.add_subplot(111)
     ff.patch.set_facecolor('aquamarine')
-    xx.set_ylim([50000, 2500000])
+    xx.set_ylim([50000, 3000000])
     ind = [decideCnt_world[0][1], decideCnt_world[1][1], decideCnt_world[2][1], decideCnt_world[3][1],
                decideCnt_world[4][1], decideCnt_world[5][1], decideCnt_world[6][1], decideCnt_world[7][1]]
     datalst = [decideCnt_world[0][0], decideCnt_world[1][0], decideCnt_world[2][0], decideCnt_world[3][0],

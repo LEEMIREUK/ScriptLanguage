@@ -29,12 +29,12 @@ def corona(window):
     ax = fig.add_subplot(1,1,1)
     fig.patch.set_facecolor('aquamarine')
     ax.set_ylim([0, 100])
-    x=np.array([round((int((now + timedelta(days=-6)).strftime('%Y%m%d')) - 20200000)/100, 2),
-                round((int((now + timedelta(days=-5)).strftime('%Y%m%d')) - 20200000)/100, 2),
-                round((int((now + timedelta(days=-4)).strftime('%Y%m%d')) - 20200000)/100, 2),
-                round((int((now + timedelta(days=-3)).strftime('%Y%m%d')) - 20200000)/100, 2),
-                round((int((now + timedelta(days=-2)).strftime('%Y%m%d')) - 20200000)/100, 2),
-                round((int((now + timedelta(days=-1)).strftime('%Y%m%d')) - 20200000)/100, 2)])
+    x=np.array(['%.2f' % ((float((now + timedelta(days=-6)).strftime('%Y%m%d')) - 20200000)/100),
+                '%.2f' % ((float((now + timedelta(days=-5)).strftime('%Y%m%d')) - 20200000)/100),
+                '%.2f' % ((float((now + timedelta(days=-4)).strftime('%Y%m%d')) - 20200000)/100),
+                '%.2f' % ((float((now + timedelta(days=-3)).strftime('%Y%m%d')) - 20200000)/100),
+                '%.2f' % ((float((now + timedelta(days=-2)).strftime('%Y%m%d')) - 20200000)/100),
+                '%.2f' % ((float((now + timedelta(days=-1)).strftime('%Y%m%d')) - 20200000)/100)])
     y=np.array([int(decideCnt_korea[0]) - int(decideCnt_korea[1]),
                 int(decideCnt_korea[1]) - int(decideCnt_korea[2]),
                 int(decideCnt_korea[2]) - int(decideCnt_korea[3]),
@@ -77,31 +77,31 @@ def corona(window):
     xx = ff.add_subplot(111)
     ff.patch.set_facecolor('aquamarine')
     xx.set_ylim([10, 8000])
-    ind = [decideCnt_world[2][1], decideCnt_world[4][1], decideCnt_world[6][1], decideCnt_world[8][1],
-        decideCnt_world[12][1], decideCnt_world[14][1], decideCnt_world[16][1], decideCnt_world[18][1], decideCnt_world[20][1]]
-    datalst = [decideCnt_world[2][0], decideCnt_world[4][0], decideCnt_world[6][0], decideCnt_world[8][0],
-        decideCnt_world[12][0], decideCnt_world[14][0], decideCnt_world[16][0], decideCnt_world[18][0], decideCnt_world[20][0]]
+    ind = [decideCnt_world[1][1], decideCnt_world[2][1], decideCnt_world[3][1], decideCnt_world[4][1],
+        decideCnt_world[6][1], decideCnt_world[7][1], decideCnt_world[8][1], decideCnt_world[9][1], decideCnt_world[10][1]]
+    datalst = [decideCnt_world[1][0], decideCnt_world[2][0], decideCnt_world[3][0], decideCnt_world[4][0],
+        decideCnt_world[6][0], decideCnt_world[7][0], decideCnt_world[8][0], decideCnt_world[9][0], decideCnt_world[10][0]]
     rects1 = xx.bar(ind, datalst, 0.7)
     canvas = FigureCanvasTkAgg(ff, master=window)
     canvas.get_tk_widget().pack(side=tk.RIGHT)
     canvas._tkcanvas.place(x=100, y=255)
     lb2 = tk.Label(window, text="국내 시,도별 코로나 발생 현황", bg='aquamarine', font=8)
     lb2.place(x=230, y=255)
-    lb2 = tk.Label(window, text=str(decideCnt_world[2][0]), bg='white', font=2)
+    lb2 = tk.Label(window, text=str(decideCnt_world[1][0]), bg='white', font=2)
     lb2.place(x=175, y=285)
-    lb2 = tk.Label(window, text=str(decideCnt_world[4][0]), bg='white', font=2)
+    lb2 = tk.Label(window, text=str(decideCnt_world[2][0]), bg='white', font=2)
     lb2.place(x=215, y=410)
-    lb2 = tk.Label(window, text=str(decideCnt_world[6][0]), bg='white', font=2)
+    lb2 = tk.Label(window, text=str(decideCnt_world[3][0]), bg='white', font=2)
     lb2.place(x=254, y=412)
-    lb2 = tk.Label(window, text=str(decideCnt_world[8][0]), bg='white', font=2)
+    lb2 = tk.Label(window, text=str(decideCnt_world[4][0]), bg='white', font=2)
     lb2.place(x=296, y=414)
-    lb2 = tk.Label(window, text=str(decideCnt_world[12][0]), bg='white', font=2)
+    lb2 = tk.Label(window, text=str(decideCnt_world[6][0]), bg='white', font=2)
     lb2.place(x=341, y=434)
-    lb2 = tk.Label(window, text=str(decideCnt_world[14][0]), bg='white', font=2)
+    lb2 = tk.Label(window, text=str(decideCnt_world[7][0]), bg='white', font=2)
     lb2.place(x=381, y=444)
-    lb2 = tk.Label(window, text=str(decideCnt_world[16][0]), bg='white', font=2)
+    lb2 = tk.Label(window, text=str(decideCnt_world[8][0]), bg='white', font=2)
     lb2.place(x=421, y=444)
-    lb2 = tk.Label(window, text=str(decideCnt_world[18][0]), bg='white', font=2)
+    lb2 = tk.Label(window, text=str(decideCnt_world[9][0]), bg='white', font=2)
     lb2.place(x=461, y=444)
-    lb2 = tk.Label(window, text=str(decideCnt_world[20][0]), bg='white', font=2)
+    lb2 = tk.Label(window, text=str(decideCnt_world[10][0]), bg='white', font=2)
     lb2.place(x=501, y=444)
